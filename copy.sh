@@ -1,5 +1,16 @@
 #!/bin/bash
 
+help="
+script to copy folders to hoerbert
+
+usage:
+$0 <dir with music> <number on hoerbert(0-8)>
+"
+
+if (("$1"=="-h")); then
+    echo "$help"
+    exit
+fi
 
 dir=$1
 target=$2
