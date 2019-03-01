@@ -15,8 +15,7 @@ fi
 dir=$1
 target=$2
 CARD="/media/seppobacho/3432-6530/"
-intro="`dirname $0`/sounds/$target*.wav"
-startid=1
+startid=0
 
 # check for target directory
 if [ ! -d "$CARD/$target" ]; then
@@ -34,16 +33,10 @@ else
     done
 fi
 
-#intro
-if (($startid == 1)); then
-    echo "adding intro $intro"
-    sox --buffer 131072 --multi-threaded --no-glob $intro --clobber -r 32000 -b 16 -e signed-integer --no-glob $CARD/$target/0.WAV remix - gain -n -1.5 bass +1 loudness -1 pad 0 0 dither
-fi
-
 # copy
 files=("$dir"/*)
 endid=$(($startid+${#files[@]}))
-for i in  $(seq $startid $endid) ; do
+for i in  $(seq $startid $((endid-1))) ; do
     fileid=$(($i-$startid))
     file=${files[$fileid]}
     echo "$i $file"
