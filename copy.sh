@@ -7,7 +7,7 @@ usage:
 $0 <dir with music> <number on hoerbert(0-8)>
 "
 
-if (("$1"=="-h")); then
+if [ "$1" == "-h" ]; then
     echo "$help"
     exit
 fi
